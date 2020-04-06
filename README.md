@@ -1,2 +1,2 @@
 # skeleton
-Skeleton application
+Makise-Co skeleton application
