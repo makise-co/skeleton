@@ -23,6 +23,7 @@ return [
         \MakiseCo\Providers\EventDispatcherServiceProvider::class,
         \MakiseCo\Database\DatabaseServiceProvider::class,
         \MakiseCo\Console\ConsoleServiceProvider::class,
+        \MakiseCo\Auth\AuthServiceProvider::class,
         \MakiseCo\Http\HttpServiceProvider::class,
     ],
 
