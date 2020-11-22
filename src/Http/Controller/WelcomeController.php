@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controller;
 
-use MakiseCo\Http\JsonResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 
 class WelcomeController
 {

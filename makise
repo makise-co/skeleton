@@ -9,12 +9,48 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
+/* @var \MakiseCo\ApplicationInterface $app */
+$app = require __DIR__ . '/bootstrap/bootstrap.php';
 
-$appDir = realpath(__DIR__);
-$configDir = $appDir . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
+$noCoroutine = array_search('--no-coroutine', $argv, true);
 
-$app = new \MakiseCo\Application($appDir, $configDir);
+// Try to run application without swoole
+if (!extension_loaded('swoole') && !$noCoroutine) {
+    $noCoroutine = true;
+}
 
-$code = $app->run($argv);
+if (false !== $noCoroutine) {
+    unset($argv[$noCoroutine]);
+    $argv = array_values($argv);
+
+    $code = $app->run($argv);
+    exit($code);
+}
+
+$code = 0;
+
+Swoole\Coroutine\run(function () use ($app, $argv, &$code) {
+    $code = $app->run($argv);
+
+    // free memory
+    $app->terminate();
+
+    if (Swoole\Timer::stats()['num'] > 0) {
+        echo "Forcing all timers to stop" . PHP_EOL;
+        print_r(Swoole\Timer::stats());
+
+        // cleanup all timer instances
+        Swoole\Timer::clearAll();
+    }
+
+    // do not block command coroutine exit if programmer have forgotten to release event loop
+    if (Swoole\Coroutine::stats()['event_num'] > 0) {
+        echo "Forcing event loop to stop" . PHP_EOL;
+        print_r(Swoole\Coroutine::stats());
+
+        // force exit event loop
+        Swoole\Event::exit();
+    }
+});
+
 exit($code);

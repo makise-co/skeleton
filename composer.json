@@ -21,9 +21,14 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "suggest": {
+        "makise-co/stack-cors": "To add CORS headers support"
+    },
     "require": {
         "php": "^7.4",
-        "makise-co/framework": "~0.0.18"
+        "makise-co/framework": "~1.0.0",
+        "makise-co/orm-bundle": "^1.0",
+        "middlewares/payload": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
