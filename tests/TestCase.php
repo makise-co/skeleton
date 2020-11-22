@@ -12,14 +12,14 @@ namespace Tests;
 
 use MakiseCo\ApplicationInterface;
 use MakiseCo\Testing\Concerns\DatabaseTransactions;
-use MakiseCo\Testing\Concerns\InteractsWithDatabase;
 use MakiseCo\Testing\Concerns\MakesHttpRequests;
 
 class TestCase extends \MakiseCo\Testing\TestCase
 {
-    use InteractsWithDatabase;
     use DatabaseTransactions;
     use MakesHttpRequests;
+
+    protected array $connectionsToTransact = ['pgsql'];
 
     protected function createApplication(): ApplicationInterface
     {

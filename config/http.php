@@ -15,8 +15,8 @@ return [
     'port' => (int)env('HTTP_PORT', 10228),
 
     'swoole' => [
-        'worker_num' => (int)env('HTTP_WORKER_NUM', fn() => \swoole_cpu_num()),
-        'reactor_num' => (int)env('HTTP_REACTOR_NUM', fn() => \swoole_cpu_num()),
+        'worker_num' => (int)env('HTTP_WORKER_NUM', static fn() => \swoole_cpu_num()),
+        'reactor_num' => (int)env('HTTP_REACTOR_NUM', static fn() => \swoole_cpu_num()),
     ],
 
     'routes' => [
@@ -25,6 +25,6 @@ return [
 
     // global middleware list
     'middleware' => [
-
+        \Middlewares\JsonPayload::class,
     ],
 ];
