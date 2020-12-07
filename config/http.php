@@ -27,4 +27,10 @@ return [
     'middleware' => [
         \Middlewares\JsonPayload::class,
     ],
+
+    // services list that should be initialized before a worker starts processing requests
+    // and which should be stopped before a worker exits
+    'services' => [
+
+    ],
 ];

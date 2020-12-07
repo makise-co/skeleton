@@ -10,15 +10,23 @@ declare(strict_types=1);
 
 return [
     'guards' => [
-        'sso' => [
+        'token' => [
             'class' => \MakiseCo\Auth\Guard\BearerTokenGuard::class,
-            'provider' => 'sso',
-        ]
+            'provider' => 'database',
+            'storageKey' => 'token',
+        ],
+
+        'form' => [
+            'class' => \MakiseCo\Auth\Guard\BearerTokenGuard::class,
+            'provider' => 'database',
+            'loginKey' => 'email',
+            'passwordKey' => 'password',
+        ],
     ],
 
     'providers' => [
-        'sso' => [
-            'class' => \App\Auth\EmptyUserProvider::class,
+        'database' => [
+            'class' => \App\Auth\DatabaseUserProvider::class,
         ],
     ],
 ];

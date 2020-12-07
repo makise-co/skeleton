@@ -26,8 +26,10 @@
     },
     "require": {
         "php": "^7.4",
-        "makise-co/framework": "~1.0.0",
-        "makise-co/orm-bundle": "^1.0",
+        "makise-co/framework": "~2.0.0",
+        "makise-co/http": "~2.0.0",
+        "makise-co/auth": "~2.0.0",
+        "makise-co/orm-bundle": "~2.0.0",
         "middlewares/payload": "^3.0"
     },
     "require-dev": {
