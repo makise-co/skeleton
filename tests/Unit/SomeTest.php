@@ -16,6 +16,6 @@ class SomeTest extends TestCase
 {
     public function testSome(): void
     {
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 }

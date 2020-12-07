@@ -20,7 +20,7 @@ return [
 
     'providers' => [
         \MakiseCo\Log\LoggerServiceProvider::class,
-        \MakiseCo\Providers\EventDispatcherServiceProvider::class,
+        \MakiseCo\Event\EventDispatcherServiceProvider::class,
         \MakiseCo\ORM\ORMProvider::class,
         \MakiseCo\Console\ConsoleServiceProvider::class,
         \MakiseCo\Auth\AuthServiceProvider::class,
@@ -31,8 +31,8 @@ return [
         \MakiseCo\Console\Commands\MakiseCommand::class,
         \MakiseCo\Console\Commands\DumpEnvCommand::class,
         \MakiseCo\Console\Commands\DumpConfigCommand::class,
-        \MakiseCo\Console\Commands\RoutesDumpCommand::class,
-        \MakiseCo\Console\Commands\StartHttpSeverCommand::class,
+        \MakiseCo\Http\Commands\RoutesDumpCommand::class,
+        \MakiseCo\Http\Commands\StartHttpSeverCommand::class,
 
         // migrations
         \MakiseCo\ORM\Console\Commands\MakeCommand::class,
@@ -40,6 +40,5 @@ return [
         \MakiseCo\ORM\Console\Commands\RollbackCommand::class,
         \MakiseCo\ORM\Console\Commands\StatusCommand::class,
         \MakiseCo\ORM\Console\Commands\ReplayCommand::class,
-        \MakiseCo\ORM\Console\Commands\InitCommand::class,
     ],
 ];

@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use Tests\WebTestCase;
 
-class SomeTest extends TestCase
+class SomeTest extends WebTestCase
 {
     public function testOk(): void
     {
